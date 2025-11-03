@@ -1,3 +1,4 @@
+
 # Running the Python Application with Docker
 
 This guide will walk you through the process of building a Docker image and running a Python application using FastAPI, which interacts with a Microsoft SQL Server database using PyODBC. The application is containerized for easy deployment and scaling.
