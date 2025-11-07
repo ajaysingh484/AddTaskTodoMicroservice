@@ -2,27 +2,16 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name:  addtask-todo-microservice
-  labels:
-    app:  addtask-todo-microservice
 spec:
   selector:
     matchLabels:
       app: addtask-todo-microservice
   replicas: 2
-  strategy:
-    rollingUpdate:
-      maxSurge: 25%
-      maxUnavailable: 25%
-    type: RollingUpdate
   template:
     metadata:
       labels:
         app: addtask-todo-microservice
     spec:
-      # initContainers:
-        # Init containers are exactly like regular containers, except:
-          # - Init containers always run to completion.
-          # - Each init container must complete successfully before the next one starts.
       containers:
       - name:  addtask-todo-microservice
         image:  acrprodtodoapp.azurecr.io/todo-add-tasks-api:v1
@@ -31,4 +20,3 @@ spec:
           value: "Driver={ODBC Driver 18 for SQL Server};Server=tcp:sql-prod-todoapp.database.windows.net,1433;Database=sqldb-prod-todoapp;Uid=devopsadmin;Pwd={your_password_here};Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;"
         ports:
         - containerPort:  8000
-          name:  addtask-todo-microservice
